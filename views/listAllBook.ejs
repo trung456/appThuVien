@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List All Book</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        const deleteBook = async (id) => {
+            await $.ajax({
+                url: "http://localhost:3000/book/deleteBook",
+                type: "POST",
+                data: JSON.stringify({ "id": id }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                }
+            });
+            location.reload();
+        };
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/library/createLibrary">Create Library</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/book/createBook">Create Book</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/book/listAllBook">List all Book</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/borrow">Borrow Book</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/borrow/searchStudentID">Return Book</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <% for (const book of allBook) { %>
+        <p>Book Name: <%= book.bookName %>
+        </p>
+        <p>Price: <%= book.price %>
+        </p>
+        <p>Library: <%= book.libraryID %>
+        </p>
+        <p>Quantity: <%= book.quantity %>
+        </p>
+        <p>Quantity Borrow: <%= book.quantity_borrow %>
+        </p>
+        <p>Quantity Remain: <%= book.quantity_remain %>
+        </p>
+        <p>Author: <%= book.author %>
+        </p>
+        <button onclick="deleteBook('<%= book.id %>')">Delete</button>
+        <% } %>
+</body>
+
+</html>

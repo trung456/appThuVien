@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="page-heading">
+        <h1>Create a Library</h1>
+    </div>
+    <form action="/library/create" method="POST" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td><label>Name Library</label></td>
+                <td><input type="text" class="form-control" id="namelibrary" name="namelibrary"></td>
+            </tr>
+            <tr>
+                <td><label>Librarian</label></td>
+                <td><input type="text" class="form-control" id="name_librarian" name="name_librarian"></td>
+            </tr>
+        </table>
+        <div class=”control-group”>
+            <div class="form-group floating-label-form-group controls">
+                <label>Name Library</label>
+                <input type="text" class="form-control" id="namelibrary" name="namelibrary">
+            </div>
+        </div>
+        <div class=”control-group”>
+            <div class="form-group floating-label-form-group controls">
+                <label>Librarian</label>
+                <input type="number" class="form-control" id="name_librarian" name="name_librarian">
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+</body>
+
+</html>

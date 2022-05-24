@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        const returnbooks = async (id, studentID) => {
+            await $.ajax({
+                url: "http://localhost:3000/borrow/returnBookStudent",
+                type: "POST",
+                data: JSON.stringify({ "id": id, "studentID":studentID }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                }
+            })
+            location.reload();
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/library/createLibrary">Create Library</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/book/createBook">Create Book</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/book/listAllBook">List all Book</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/borrow">Borrow Book</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://localhost:3000/borrow/searchStudentID">Return Book</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="page-heading">
+        <h1>Borrow a book</h1>
+    </div>
+    <!-- <% for (const borrow of borrowed){ %>
+        <p>Student Name: <%= borrow.nameStudent %> </p>
+        <p>Student ID: <%= borrow.studentID %> </p>
+        <p>Book Name: <%= borrow.bookName %> </p>
+        <p>Quantity Borrow <%= borrow.quantity_borrow %> </p>
+        <p>Borrow Date: <%= borrow.borrowDate %> </p>
+        <button onclick="returnbooks('<%= borrow.id %>')">RETURNING</button>
+    <% } %> -->
+    <!-- <form  method="POST" enctype="multipart/form-data"> -->
+        <% for (const borrow of borrowed){ %>
+            <table class=”control-group” style="border: 5px black;">
+                <tr class="form-group floating-label-form-group controls">
+                    <td><label>Student Name</label></td>
+                    <td>
+                        <p>
+                            <%= borrow.nameStudent %>
+                        </p>
+                    </td>
+                </tr>
+                <tr class="form-group floating-label-form-group controls">
+                    <td><label>Student ID</label></td>
+                    <td>
+                        <p>
+                            <%= borrow.studentID %>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Book Name</label></td>
+                    <td>
+                        <p>
+                            <%= borrow.bookName %>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Quantity Borrow</label></td>
+                    <td>
+                        <p>
+                            <%= borrow.quantity_borrow %>
+                        </p>
+                    </td>
+                </tr>
+                <tr class="form-group floating-label-form-group controls">
+                    <td><label>Borrow Date</label></td>
+                    <td>
+                        <p>
+                            <%= borrow.borrowDate %>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <button onclick="returnbooks('<%= borrow.id, borrow.studentID %>')">RETURNING</button>
+            <% } %>
+    <!-- </form> -->
+</body>
